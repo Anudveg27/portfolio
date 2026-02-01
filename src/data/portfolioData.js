@@ -211,21 +211,13 @@ export const portfolioData = {
   // ============================================
   awards: [
     {
-      type: "image",
       image: "https://storage.googleapis.com/creatorspace-public/users%2Fcm2ldellc070lm20158338q82%2Fp3Gfsz5SyytthAo7-1702381042507%2520(1).jpeg",
-      caption: "Wizard of the Year"
-    },
-    {
-      type: "text",
+      caption: "Wizard of the Year",
       content: "For exhibiting professional excellence through my innovative, proactive and multifaceted contributions in the organization's growth beyond my usual role."
     },
     {
-      type: "image",
       image: "https://storage.googleapis.com/creatorspace-public/users%2Fcm2ldellc070lm20158338q82%2FP4Me5CxWVIo5aVfY-1701929226435.jpeg",
-      caption: "Responsible Owner"
-    },
-    {
-      type: "text",
+      caption: "Responsible Owner",
       content: "For exhibiting commitment and dedication to embrace new challenges, and deliver prompt, top-notch solutions."
     }
   ]

@@ -14,37 +14,37 @@ const CertificationCard = ({ cert }) => {
       href={cert.url} 
       target="_blank" 
       rel="noopener noreferrer"
-      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
     >
-      <div className="p-6">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex items-center gap-4 flex-1 min-w-0">
-            <div className="flex-shrink-0">
-              {cert.type === 'linkedin' ? (
-                <LinkedInIcon />
-              ) : cert.icon ? (
-                <img src={cert.icon} alt="" className="w-10 h-10 rounded-lg" />
-              ) : (
-                <div className="w-10 h-10 bg-gray-200 rounded-lg"></div>
-              )}
+      <div className="p-6 flex items-center gap-6">
+        {/* Left side - Icon, Title, and Host */}
+        <div className="flex flex-col gap-3 flex-1 min-w-0">
+          <div className="flex-shrink-0">
+            {cert.type === 'linkedin' ? (
+              <LinkedInIcon />
+            ) : cert.icon ? (
+              <img src={cert.icon} alt="" className="w-12 h-12 rounded-lg" />
+            ) : (
+              <div className="w-12 h-12 bg-gray-200 rounded-lg"></div>
+            )}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="font-semibold text-gray-900 text-base mb-1">
+              {cert.title}
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="font-semibold text-gray-900 line-clamp-2">
-                {cert.title}
-              </div>
-              <div className="text-sm text-gray-500">
-                {cert.host}
-              </div>
+            <div className="text-sm text-gray-500">
+              {cert.host}
             </div>
           </div>
         </div>
-        
+
+        {/* Right side - Certificate Image */}
         {cert.image && (
-          <div className="mt-4 rounded-xl overflow-hidden">
+          <div className="flex-shrink-0 w-44 h-32 rounded-xl overflow-hidden border border-gray-200">
             <img 
               src={cert.image} 
               alt={cert.title}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
         )}

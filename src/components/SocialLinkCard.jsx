@@ -69,7 +69,7 @@ const SocialLinkCard = ({ link }) => {
   };
 
   const cardClasses = `
-    group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md 
+    group relative bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md 
     transition-all duration-300 hover:-translate-y-0.5
     ${link.type === 'behance' ? 'row-span-2' : ''}
   `;
@@ -138,9 +138,9 @@ const SocialLinkCard = ({ link }) => {
       rel="noopener noreferrer"
       className={cardClasses}
     >
-      <div className="p-5 flex items-center gap-4">
+      <div className="p-6 flex items-center gap-6">
         {/* Left side - Icon, Title, and Follow button */}
-        <div className="flex flex-col gap-3 flex-1 min-w-0">
+        <div className="flex flex-col gap-3 flex-1 min-w-0 ">
           <div className="flex items-center gap-3">
             <div className="flex-shrink-0">
               {getIcon()}
@@ -167,7 +167,7 @@ const SocialLinkCard = ({ link }) => {
 
         {/* Right side - Image or Grid */}
         {link.image && !link.grid && (
-          <div className="flex-shrink-0 w-36 h-24 rounded-xl overflow-hidden">
+          <div className="flex-shrink-0 w-36 h-28 rounded-xl overflow-hidden border border-gray-200">
             <img 
               src={link.image} 
               alt={link.title}
@@ -177,7 +177,7 @@ const SocialLinkCard = ({ link }) => {
         )}
 
         {link.grid && (
-          <div className="flex-shrink-0 grid grid-cols-2 gap-1.5 w-36">
+          <div className="flex-shrink-0 grid grid-cols-2 gap-2 w-32">
             {link.grid.slice(0, 4).map((img, idx) => (
               <div key={idx} className="aspect-square rounded-lg overflow-hidden">
                 <img 

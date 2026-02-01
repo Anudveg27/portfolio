@@ -11,7 +11,7 @@ import './index.css';
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-400 mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Profile Section - Sticky on large screens */}
           <ProfileSection profile={portfolioData.profile} />
@@ -34,17 +34,26 @@ function App() {
 
               {/* Recent Works Section */}
               <SectionHeader title="👨🏻‍💻 Recent Works-" />
-              {portfolioData.recentWorks.map((work, idx) => (
-                <WorkCard key={idx} work={work} />
-              ))}
+              <div className="col-span-full">
+                <div className="flex flex-wrap gap-6">
+                  {portfolioData.recentWorks.map((work, idx) => (
+                    <WorkCard key={idx} work={work} />
+                  ))}
+                </div>
+              </div>
 
               {/* Awards & Achievements Section */}
               <SectionHeader title="🏆 Awards & Achievements-" />
-              {portfolioData.awards.map((award, idx) => (
-                <div key={idx} className={award.type === 'image' ? 'md:col-span-1' : 'md:col-span-2'}>
-                  <AwardCard award={award} />
-                </div>
-              ))}
+              {portfolioData.awards.map((award, idx) => {
+                const hasImageAndContent = award.image && award.content;
+                const spanClass = hasImageAndContent ? 'md:col-span-2' : 'md:col-span-1';
+                            
+                return (
+                  <div key={idx} className={spanClass}>
+                    <AwardCard award={award} />
+                  </div>
+                );
+              })}
 
             </div>
           </div>

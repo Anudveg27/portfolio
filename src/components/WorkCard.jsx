@@ -19,30 +19,62 @@ const LinkIcon = () => (
 );
 
 const WorkCard = ({ work }) => {
-  const cardClasses = work.size === 'small' 
-    ? 'md:col-span-1' 
-    : 'md:col-span-2';
+  // If no image or empty image, show compact vertical card - 2 per row on mobile, 3 per row on desktop
+  if (!work.image || work.image === '') {
+    return (
+      <a 
+        href={work.url} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+      >
+        <div className="p-6">
+          <div className="flex flex-col gap-3">
+            <div className="flex-shrink-0">
+              {work.type === 'figma' ? (
+                <FigmaIcon />
+              ) : work.icon ? (
+                <img src={work.icon} alt="" className="w-12 h-12 rounded-lg" />
+              ) : (
+                <LinkIcon />
+              )}
+            </div>
+            <div>
+              <div className="font-semibold text-gray-900 text-base leading-snug mb-1">
+                {work.title}
+              </div>
+              <div className="text-sm text-gray-500">
+                {work.host}
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    );
+  }
 
+  // If image exists, show horizontal layout - full width on mobile, half width on desktop
   return (
     <a 
       href={work.url} 
       target="_blank" 
       rel="noopener noreferrer"
-      className={`group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${cardClasses}`}
+      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 w-full lg:w-[calc(50%-0.75rem)]"
     >
-      <div className="p-6">
-        <div className="flex items-start gap-4">
+      <div className="p-6 flex items-center gap-6">
+        {/* Left side - Icon, Title, and Host */}
+        <div className="flex flex-col gap-3 flex-1 min-w-0">
           <div className="flex-shrink-0">
             {work.type === 'figma' ? (
               <FigmaIcon />
             ) : work.icon ? (
-              <img src={work.icon} alt="" className="w-10 h-10 rounded-lg" />
+              <img src={work.icon} alt="" className="w-12 h-12 rounded-lg" />
             ) : (
               <LinkIcon />
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <div className="font-semibold text-gray-900 line-clamp-2">
+            <div className="font-semibold text-gray-900 line-clamp-3 text-base leading-snug mb-1">
               {work.title}
             </div>
             <div className="text-sm text-gray-500">
@@ -51,17 +83,14 @@ const WorkCard = ({ work }) => {
           </div>
         </div>
         
-        {work.image && (
-          <div className="mt-4 rounded-xl overflow-hidden">
-            <img 
-              src={work.image} 
-              alt={work.title}
-              className={`w-full object-cover group-hover:scale-105 transition-transform duration-300 ${
-                work.size === 'small' ? 'h-32' : 'h-48'
-              }`}
-            />
-          </div>
-        )}
+        {/* Right side - Image */}
+        <div className="flex-shrink-0 w-32 sm:w-44 h-24 sm:h-32 rounded-xl overflow-hidden border border-gray-200">
+          <img 
+            src={work.image} 
+            alt={work.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
       </div>
     </a>
   );
